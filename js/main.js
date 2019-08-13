@@ -1,11 +1,11 @@
-const url = '../docs/sample.pdf';
+const url = './docs/sample.pdf';
 
 let pdfDoc             = null,
     pageNum            = 1,
     pageIsRendering    = false,
     pageIsNumIsPending = null;
 
-const scale   = 1.5,
+const scale   = 1,
       canvas  = document.querySelector('#pdf-render'),
       ctx     = canvas.getContext('2d');
 
@@ -33,6 +33,9 @@ const renderPage = num => {
                 pageIsNumIsPending = null;
             }
         });
+
+        // Output current page
+        document.querySelector('#page-num').textContent = num;
     });
 };
 
