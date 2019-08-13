@@ -48,6 +48,16 @@ const queueRenderPage = num => {
     }
 }
 
+
+// Show Prev Page
+const showPrevPage = () => {
+    if (pageNum <= 1) {
+        return;
+    }
+    pageNum--;
+    queueRenderPage(pageNum);
+}
+
 //  Get Document
 pdfjsLib.getDocument(url).promise.then(pdfDoc_ => {
   pdfDoc = pdfDoc_;
