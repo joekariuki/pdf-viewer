@@ -39,6 +39,15 @@ const renderPage = num => {
     });
 };
 
+// Check for pages rendering
+const queueRenderPage = num => {
+    if(pageIsRendering) {
+        pageIsNumIsPending = num;
+    } else {
+        renderPage(num);
+    }
+}
+
 //  Get Document
 pdfjsLib.getDocument(url).promise.then(pdfDoc_ => {
   pdfDoc = pdfDoc_;
