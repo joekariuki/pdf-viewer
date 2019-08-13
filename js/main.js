@@ -59,7 +59,7 @@ const showPrevPage = () => {
 }
 
 // Show Next Page
-const showPrevPage = () => {
+const showPage = () => {
     if (pageNum >= pdfDoc.numPages) {
         return;
     }
@@ -75,3 +75,7 @@ pdfjsLib.getDocument(url).promise.then(pdfDoc_ => {
 
   renderPage(pageNum);
 });
+
+// Button events
+document.querySelector('#prev-page').addEventListener('click', showPrevPage);
+document.querySelector('#next-page').addEventListener('click', showNextPage);
