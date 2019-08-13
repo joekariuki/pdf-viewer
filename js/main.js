@@ -11,12 +11,36 @@ const scale   = 1.5,
 
 // Render the page
 const renderPage = num => {
+    pageIsRendering = true;
 
-}
+    // Get page
+    pdfDoc.getPage(num).then(page => {
+        // Set scale
+        const viewport = page.getViewport({ scale });
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
+
+        const renderCtx = {
+            canvasContext: ctx,
+            viewport
+        }
+
+        page.render(renderCtx).promise.then(() => {
+            pageIsRendering = false;
+
+            if(pageIsNumIsPending !== null) {
+                renderPage(pageIsNumIsPending);
+                pageIsNumIsPending = null;
+            }
+        });
+    });
+};
 
 //  Get Document
 pdfjsLib.getDocument(url).promise.then(pdfDoc_ => {
   pdfDoc = pdfDoc_;
 
   document.querySelector('#page-count').textContent = pdfDoc.numPages;
+
+  renderPage(pageNum);
 });
