@@ -17,3 +17,13 @@
     cursor: pointer;
     padding: 0.7rem 2rem;
 }
+
+.page-info {
+    margin-left: 1rem;
+}
+
+.error {
+    background: orangered;
+    color: white;
+    padding: 1rem;
+}
